@@ -1,22 +1,40 @@
-"""
-URL configuration for campus_connect project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+from django.shortcuts import render
+
+# Temporary views to render templates directly (you can replace with real views later)
+def home(request):
+    return render(request, "base.html", {"title": "Home"})
+
+def about(request):
+    return render(request, "about.html", {"title": "About"})
+
+def contact(request):
+    return render(request, "contact.html", {"title": "Contact"})
+
+def privacy(request):
+    return render(request, "privacy.html", {"title": "Privacy Policy"})
+
+def terms(request):
+    return render(request, "terms.html", {"title": "Terms of Service"})
+
+def dashboard(request):
+    return render(request, "dashboard.html", {"title": "Dashboard"})
+
+def profile(request):
+    return render(request, "profile.html", {"title": "Profile"})
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+
+    # Public routes
+    path("", home, name="home"),
+    path("about/", about, name="about"),
+    path("contact/", contact, name="contact"),
+    path("privacy/", privacy, name="privacy"),
+    path("terms/", terms, name="terms"),
+
+    # Auth-related routes (placeholders, you can connect to Django auth later)
+    path("dashboard/", dashboard, name="dashboard"),
+    path("profile/", profile, name="profile"),
 ]
